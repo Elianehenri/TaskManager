@@ -3,12 +3,13 @@ using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using TaskManager.Models;
 
 namespace TaskManager.Security
 {
     public class TokenService
     {
-        public static string GenerateToken(string username, string jwtKey)
+        public static string GenerateToken(User user, string jwtKey)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
 
@@ -19,8 +20,12 @@ namespace TaskManager.Security
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, username) // Adicione mais claims, se necessário
+                    //propriedades de segurança do token
+                    new Claim(ClaimTypes.Name, user.Id.ToString()),
+                    new Claim(ClaimTypes.Email, user.Email),
+
                 }),
+                 
                 Expires = DateTime.UtcNow.AddHours(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(secretKey), SecurityAlgorithms.HmacSha256Signature)
             };

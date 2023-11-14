@@ -35,10 +35,10 @@ namespace TaskManager.Repository
         //   return _context.Tasks.Where(t => t.UserId == userId).ToList();
         //}
 
-        public List<User> GetAllUsers()
-        {
-            return _context.Users.ToList();
-        }
+        //public List<User> GetAllUsers()
+        //{
+        //    return _context.Users.ToList();
+        //}
 
         public User GetUserById(int userId)
         {

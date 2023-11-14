@@ -12,8 +12,8 @@ using TaskManager.DataBase;
 namespace TaskManager.Migrations
 {
     [DbContext(typeof(TaskManagerDbContext))]
-    [Migration("20231113183921_MigrationNomeTask")]
-    partial class MigrationNomeTask
+    [Migration("20231114172407_MigrationInicial")]
+    partial class MigrationInicial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

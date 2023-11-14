@@ -1,5 +1,10 @@
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using TaskManager.Config;
 using TaskManager.DataBase;
+using TaskManager.Security;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +20,36 @@ builder.Services.AddSwaggerGen();
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<TaskManagerDbContext>(options => options.UseSqlServer(connectionString));
 
+//na hora de inicializar a aplicacao, ela esta pegando a configuracao do jwt la no appsettings.json e colocando na classe JWTKey
+var jwtsettings = builder.Configuration.GetRequiredSection("JWT").Get<JWTKey>();
+
+
+//configurar injecao de dependencia
+//repositorio
+RepositoryIoc.RegisterServices(builder.Services);
+//services
+ServicoIoc.RegisterServices(builder.Services);
+
+//acessando a chave de seguranca
+var secretKey = Encoding.ASCII.GetBytes(jwtsettings.SecretKey);
+builder.Services.AddAuthentication(auth =>
+{
+    auth.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    auth.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(authentication =>
+{
+    authentication.RequireHttpsMetadata = false;
+    authentication.SaveToken = true;
+    authentication.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(secretKey),
+        ValidateIssuer = false,
+        ValidateAudience = false
+    };
+});
+
+
 
 var app = builder.Build();
 
@@ -26,7 +61,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

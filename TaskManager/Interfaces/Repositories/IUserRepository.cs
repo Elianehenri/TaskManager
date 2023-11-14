@@ -11,7 +11,7 @@ namespace TaskManager.Interfaces.Repositories
         void DeleteUser(User user);// deletar um usuario
         bool CheckEmail(string email); // verificar se o email ja existe
 
-        List<User> GetAllUsers();// pegar todos os usuarios
+        //List<User> GetAllUsers();// pegar todos os usuarios
 
 
        // List<Task> GetAllTasksByUser(int userId);//lista todas as tarefas por usuario
