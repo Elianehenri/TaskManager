@@ -8,7 +8,7 @@ namespace TaskManager.Config
         public static void RegisterServices(IServiceCollection builder)
         {
             builder.AddScoped<IUserRepository, UserRepository>();
-            //builder.AddScoped<ITaskRepository, TaskRepository>();
+            builder.AddScoped<ITaskRepository, TaskRepository>();
         }
     }
 }

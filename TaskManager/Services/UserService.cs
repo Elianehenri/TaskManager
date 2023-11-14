@@ -68,10 +68,7 @@ namespace TaskManager.Services
             _userRepository.DeleteUser(user);
         }
 
-        //public List<User> GetAllUsers()
-        //{
-        //    throw new NotImplementedException();
-        //}
+        
 
         public UserResponseDto GetUserById(int userId)
         {

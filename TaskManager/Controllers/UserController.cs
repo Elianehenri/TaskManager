@@ -37,7 +37,7 @@ namespace TaskManager.Controllers
         }
 
         [HttpDelete]
-       // [Authorize]
+        [Authorize]
         public ActionResult Delete(int userId)
         {
             try
@@ -55,7 +55,7 @@ namespace TaskManager.Controllers
 
         [HttpPut]
         [Authorize]
-        // [Route("userId")]
+        
         public IActionResult Put( UserRequestDto userRequestDto)
         {
            

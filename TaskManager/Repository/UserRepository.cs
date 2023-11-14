@@ -30,15 +30,7 @@ namespace TaskManager.Repository
             _context.SaveChanges();
         }
 
-        //public List<Task> GetAllTasksByUser(int userId)
-        //{
-        //   return _context.Tasks.Where(t => t.UserId == userId).ToList();
-        //}
-
-        //public List<User> GetAllUsers()
-        //{
-        //    return _context.Users.ToList();
-        //}
+        
 
         public User GetUserById(int userId)
         {
