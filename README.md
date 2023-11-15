@@ -90,7 +90,7 @@ Atualizar uma tarefa
  Excluir uma tarefa
 
 - Método: DELETE
-- ota: /tasks/{taskId}
+- Rota: /tasks/{taskId}
 - Autenticação: Sim
 
   
