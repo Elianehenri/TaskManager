@@ -61,7 +61,7 @@ namespace TaskManager.Controllers
             try
             {
                 _taskService.Create(taskRegisterDto);
-                return Ok();
+                return Ok("Tasks cadastrada com sucesso");
             }
             catch (Exception ex)
             {

@@ -10,6 +10,7 @@ namespace TaskManager.Models
         
         [JsonIgnore]
         public string Password { get; set; }
+        public string Avatar { get; set; }
 
         public List<Tasks> Tasks { get; set; }
     }

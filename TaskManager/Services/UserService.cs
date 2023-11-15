@@ -51,6 +51,7 @@ namespace TaskManager.Services
                 Name = userRegisterdto.Name,
                 Email = userRegisterdto.Email.ToLower(),
                 Password = HashUtility.GenerateSHA256Hash(userRegisterdto.Password),
+                Avatar = userRegisterdto.Avatar
             };
             // salvar banco
             _userRepository.AddUser(user);
@@ -136,6 +137,7 @@ namespace TaskManager.Services
             userDb.Name = userRequestdto.Name;
             userDb.Email = userRequestdto.Email;
             userDb.Password = HashUtility.GenerateSHA256Hash(userRequestdto.Password);
+            userDb.Avatar = userRequestdto.Avatar;
 
             _userRepository.UpdateUser(userDb);
         }
