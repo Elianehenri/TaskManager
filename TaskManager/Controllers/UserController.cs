@@ -19,9 +19,24 @@ namespace TaskManager.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
+        //[HttpGet]
+        //[Authorize]
+        //[Route("userId")]
+        //public ActionResult Get(int userId)
+        //{
+        //    try
+        //    {
+        //        var user = _userService.GetUserById(userId);
+        //        return Ok(user);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        _logger.LogError(ex, "Erro ao obter usuário");
+        //        return BadRequest(new { message = ex.Message });
+        //    }
+        //}
+        [HttpGet("{userId}")]
         [Authorize]
-        [Route("userId")]
         public ActionResult Get(int userId)
         {
             try
@@ -35,6 +50,7 @@ namespace TaskManager.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
+
 
         [HttpDelete]
         [Authorize]
